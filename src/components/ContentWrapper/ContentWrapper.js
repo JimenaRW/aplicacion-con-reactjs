@@ -1,6 +1,7 @@
-import ContentRowTop from "./ContentRowTop";
+import React from 'react';
+import ContentRowTop from "./ContentRowTop/ContentRowTop";
 import Footer from "./Footer";
-import TopBar from "./TopBar";
+import TopBar from "./TopBar/TopBar";
 
 function ContentWrapper() {
     return ( 
