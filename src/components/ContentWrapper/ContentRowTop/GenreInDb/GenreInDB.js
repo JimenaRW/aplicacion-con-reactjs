@@ -5,7 +5,7 @@ let genres = [
     'Acción', 'Animación', 'Aventura', 'Ciencia Ficción', 'Comedia', 'Documental', 'Drama', 'Fantasia', 'Infantiles', 'Musical'
 ]
 
-function GenreInDB({name}) {
+function GenreInDB() {
     return (
         <div className="col-lg-6 mb-4">						
             <div className="card shadow mb-4">

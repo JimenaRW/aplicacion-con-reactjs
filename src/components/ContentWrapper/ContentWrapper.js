@@ -1,5 +1,6 @@
 import React from 'react';
 import ContentRowTop from "./ContentRowTop/ContentRowTop";
+import TableInDb from './ContentRowTop/TableInDb/TableInDb';
 import Footer from "./Footer";
 import TopBar from "./TopBar/TopBar";
 
@@ -13,6 +14,7 @@ function ContentWrapper() {
 				
 				<ContentRowTop/>
                 
+				<TableInDb/>
 			</div>
 
 			<Footer/>

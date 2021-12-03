@@ -14,9 +14,9 @@ function ContentRowTop() {
         },
         {
             title: 'Total Awards',
-            color: 'sucess',
+            color: 'success',
             amount: 79,
-            icon: 'da-award'
+            icon: 'fa-award'
         },
         {
             title: 'Actors quantity',
