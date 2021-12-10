@@ -1,53 +1,67 @@
-import React from "react";
+import React, { Component } from "react";
 import TableRow from "./TableRow";
+class TableInDb extends Component {
 
-function TableInDb() {
-    let data = [
-        {
-            title : "Billy Elliot",
-            length : 123,
-            rating : 3,
-            genres : ["Drama", "Comedia"],
-            awards : 2
-        },
-        {
-            title : "Alicia en el país de las maravillas",
-            length : 105,
-            rating : 4,
-            genres : ["Infantil", "Comedia"],
-            awards : 1
+    constructor() {
+        super()
+        this.state = {
+            moviesList: []
         }
-    ]
-    return ( 
-        <div>
-            <table class="shadow">
-                <thead>
-                    <tr>
-                        <th>Título</th>
-                        <th>Duración</th>
-                        <th>Rating</th>
-                        <th>Género</th>
-                        <th>Premios</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    { data.map((item, i) => {
-                        return (
-                            <TableRow
-                                key = {item.title + i}
-                                title = {item.title}
-                                length = {item.length}
-                                rating = {item.rating}
-                                genres = {item.genres}
-                                awards = {item.awards}
-                            />
-                        )
-                    })}
-                </tbody>
 
-            </table>
-        </div>
-    );
+    }
+
+    render() {
+        return (
+            <div>
+                <table className="shadow">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Título</th>
+                            <th>Calificación</th>
+                            <th>Premios</th>
+                            <th>Duración</th>
+                            <th>Género</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                        this.state.moviesList.map((item, i) => {
+                            return (
+                                <TableRow
+                                    key={item.title + i}
+                                    id={item.id}
+                                    title={item.title}
+                                    rating={item.rating}
+                                    awards={item.awards}
+                                    length={item.length}
+                                    genre={item.genre}
+                                />
+                            )
+                        })}
+                    </tbody>
+
+                </table>
+            </div>
+        );
+    }
+
+    async componentDidMount() {
+        try {
+            let response = await fetch('/api/movies');
+            let result = await response.json();
+            
+            //console.log(result)
+            this.setState(
+                {
+                    moviesList : result.data
+                }
+            ) 
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
 }
 
 export default TableInDb;

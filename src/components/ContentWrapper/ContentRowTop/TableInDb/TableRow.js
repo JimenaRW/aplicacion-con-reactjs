@@ -1,21 +1,28 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-function TableRow({ title, length, rating, genres, awards }) {
-    return ( 
+function TableRow({ id, title, length, rating, genre, awards }) {
+
+    return (
         <tr>
-            <td>{ title }</td>
-            <td>{ length }</td>
-            <td>{ rating }</td>
+            <td>{id}</td>
+            <td>{title}</td>
+            <td>{rating}</td>
+            <td>{awards}</td>
+            <td>{length !== null ? length : '-'}</td>
             <td>
                 <ul>
-
-                { genres.map( (genre,i) => <li key={genre + i} >{genre}</li>) }
-                
+                    <li>
+                        {genre !== null ? genre.name : 'Sin género'}
+                    </li>
                 </ul>
             </td>
-            <td>{ awards }</td>
         </tr>
-     );
-}
+    );
 
+}
+TableRow.defaultProps = {
+    title: PropTypes.string.isRequired,
+    length: PropTypes.number
+}
 export default TableRow;
