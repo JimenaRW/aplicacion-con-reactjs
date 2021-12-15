@@ -24,13 +24,12 @@ function ContentRowMovies({title,color,amount,icon}) {
 ContentRowMovies.propTypes = {
     title : PropTypes.string.isRequired,
     color : PropTypes.string.isRequired,
-    amount : PropTypes.number.isRequired,
     icon : PropTypes.string,
 }
 ContentRowMovies.defaultProps = {
     title : 'Campo',
     color : 'danger',
-    amount : 0,
+    amount : '0',
 }
 
 export default ContentRowMovies;

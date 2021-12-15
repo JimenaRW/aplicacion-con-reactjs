@@ -2,7 +2,6 @@ import React from 'react';
 
 function LastMovieInDb() {
     return (
-       
                 
             <div className="col-lg-6 mb-4">
                 <div className="card shadow mb-4">

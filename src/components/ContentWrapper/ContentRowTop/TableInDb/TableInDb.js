@@ -45,22 +45,33 @@ class TableInDb extends Component {
             </div>
         );
     }
-
+    
     async componentDidMount() {
         try {
-            let response = await fetch('/api/movies');
-            let result = await response.json();
-            
-            //console.log(result)
-            this.setState(
-                {
-                    moviesList : result.data
-                }
-            ) 
+            await this.apiCall('/api/movies', this.getMovies)
         } catch (err) {
             console.log(err)
         }
     }
+
+    async apiCall(url, handler) {
+        try {
+            let response = await fetch(url);
+            let result = await response.json();
+
+            handler(result)
+        } catch (err) {
+            console.log(err)
+        }
+    }
+
+    getMovies = (info => {
+        this.setState(
+            {
+                moviesList : info.data
+            }
+        )
+    })
 
 }
 

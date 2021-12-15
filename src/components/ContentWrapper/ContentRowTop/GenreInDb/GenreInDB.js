@@ -29,7 +29,7 @@ class GenreInDB extends Component {
                     <div className="card-body fondoCaja">
                         <div className="row">
                             {
-                                this.state.genresList.map((genre,index) => <Genre key={index} {...genre}/>)
+                                this.state.genresList.map((genre,index) => <Genre key={genre.name + index} name={genre.name}/>)
                             }
                         </div>
                     </div>
@@ -37,24 +37,33 @@ class GenreInDB extends Component {
             </div>
         );
     }
-
     async componentDidMount() {
         try {
-            let response = await fetch('/api/genres');
-            let result = await response.json();
-            
-            //console.log(result)
-            this.setState(
-                {
-                    genresList : result.data
-                    
-                }
-            )    
-
-        } catch(err) {
+            await this.apiCall('/api/genres', this.getGenres)
+        } catch (err) {
             console.log(err)
         }
+
     }
+
+    async apiCall(url, handler) {
+        try {
+            let response = await fetch(url);
+            let result = await response.json();
+
+            handler(result)
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
+    getGenres = (info => {
+        this.setState(
+            {
+                genresList : info.data
+            }
+        )
+    })
         
 }
 
