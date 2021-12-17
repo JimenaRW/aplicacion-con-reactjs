@@ -1,7 +1,12 @@
 import React, { Component } from 'react';
+import { Routes, Route } from 'react-router-dom';
 import GenreInDB from './GenreInDb/GenreInDB';
 import ContentRowMovies from "./ContentRowMovies";
 import LastMovieInDb from './LastMovieInDb';
+
+import TableInDb from '../TableInDb/TableInDb';
+import SearchMovies from '../../SearchMovies';
+import NotFound from '../../NotFound';
 
 class ContentRowTop extends Component {
     constructor() {
@@ -32,6 +37,7 @@ class ContentRowTop extends Component {
 
     render() {
         return (
+            <>
             <div className="container-fluid">
                 <div className="d-sm-flex align-items-center justify-content-between mb-4">
                     <h1 className="h3 mb-0 text-gray-800">App Dashboard</h1>
@@ -50,13 +56,19 @@ class ContentRowTop extends Component {
                         })
                     }
                 </div>
-                <div className="row">
-                    <LastMovieInDb />
-
-                    <GenreInDB />
-                </div>
 
             </div>
+                    <Routes>
+                            <Route path="/" elements={''}/>
+                            <Route path="/lastmovie" element={<LastMovieInDb />}/>
+                            <Route path="/genres" element={<GenreInDB />}/>
+                            <Route path="/movies" element={<TableInDb />}/>
+                            <Route path="/search" element={<SearchMovies />}/>
+                            <Route path="/*" element={<NotFound />}/>
+
+                    </Routes>
+            </>                    
+            
         );
     }
 
